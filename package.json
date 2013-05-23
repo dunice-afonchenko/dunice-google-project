@@ -25,7 +25,15 @@
     "view-helpers": "latest",
     "less": "latest",
     "moment": "latest",
-    "marked": "latest"
+    "marked": "latest",
+    "request": "latest",
+    "googleplaces": "latest",
+    "qs": "latest",
+    "async": "latest",
+    "cron": "latest",
+    "underscore.deferred": "latest",
+    "iced-coffee-script": "latest",
+    "time": "latest"
   },
   "devDependencies": {
     "grunt": "latest",
