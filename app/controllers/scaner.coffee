@@ -67,7 +67,7 @@ gpw = new GooglePlacesWrapper config
 contacts = []
 gpw.getRightPlaces {
   location: [32.048243,-81.101074],
-  radius: 100,
+  radius: 1000,
 }, (err, places)->
 #  console.log 'done', places #, {err, places}
   _.each places, (place, index) ->
@@ -95,20 +95,32 @@ gpw.getRightPlaces {
 #    pageSpeedMobile: String
 #  }
 #
-#  Business = mongoose.model 'business', businessSchema
+#  Business = mongoose.model 'Business', businessSchema
 
   async.each contacts, (item) ->
     queryOptions = {
+      method: 'GET',
       url: item.website,
       key: config.apiKey
     }
     query = qs.stringify queryOptions
 
-    request {uri: config.pageSpeed + query + config.pageSpeedDesktop}, (err, resDesktop) ->
-      if !err && response.statusCode == 200
-        console.log '-------------->', resDesktop
+#    request {uri: config.pageSpeed + query + config.pageSpeedDesktop}, (err, resDesktop) ->
+#      if !err && resDesktop.statusCode == 200
+#        console.log '-------------->', resDesktop
 
-    request {uri: config.pageSpeed + query + config.pageSpeedMobile}, (err, resMobile) ->
+#    request {uri: config.pageSpeed + query + config.pageSpeedMobile}, (err, resMobile) ->
+#      if !err && resMobile.statusCode == 200
+#        console.log '-------------->', resMobile
+
+    request {uri: item.website}, (err, response) ->
       if !err && response.statusCode == 200
-        console.log '-------------->', resMobile
-        
+#        console.log '<><><><><><><><><><><><><><><><>', response
+        regWP = new RegExp '/wp-content|wp-admin|wp-includes/'
+        isWP = regWP.test(response.body)
+        console.log '+++++++++++', isWP, item.website
+
+#        regEMail = new RegExp '/[A-Z0-9._%+-]+@([a-z0-9_\.-]+)\.([a-z\.]{2,6})/g'
+#        eMail = regEMail.exec(response.body)
+#        console.log 'EMAIL<<<<', eMail, '--------', item.website
+
