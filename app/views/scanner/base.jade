@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      .span9
+        block main
+      .span3
+        .well.sidebar-nav
+          ul.nav.nav-list
+            li
+              a(href='/scanner/') List scanner
+            li
+              a(href='/scanner/new') New scanner
+

@@ -1,0 +1,23 @@
+extends base
+
+block content
+  - var action = '/scanner/businesses'
+  form(action=action, method='get')
+    p
+      label Radius
+        br
+        input.input.input-xxlarge(name='radius', type='text', value=scanner.radius)
+
+    p
+      label Latitude
+        br
+        input(name='latitude', type='text', placeholder='Latitude', value=scanner.latitude)
+
+    p
+      label Longitude
+        br
+        input(name='longitude', type='text', placeholder='Longitude', value=scanner.longitude)
+
+    p
+      button.btn.btn-primary(type='submit') Create Scanner
+

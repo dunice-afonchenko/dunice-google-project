@@ -1,0 +1,24 @@
+extends ../layout
+
+block title
+  | List businesses
+
+block content
+
+  each business in businesses
+
+    .container
+      .row
+        .span12
+          h1=business.json.name
+      .row
+        .span2
+          small
+            p
+              b Found
+              br
+              != dateShortMon(business.createdAt)
+
+        .span10
+          != marked(business.json)
+

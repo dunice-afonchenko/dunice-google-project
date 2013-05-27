@@ -1,5 +1,5 @@
 module.exports = (app, passport, auth) ->
-  
+
   # User routes
   users = require '../app/controllers/users'
   app.get '/login', users.login
@@ -13,7 +13,7 @@ module.exports = (app, passport, auth) ->
       return
 
   app.get '/logout', users.logout
-  
+
   app.get '/users', auth.requiresLogin, users.index
   app.get '/users/new', auth.requiresLogin, users.new
   app.post '/users', auth.requiresLogin, users.create
@@ -25,7 +25,8 @@ module.exports = (app, passport, auth) ->
 
   # Article routes
   articles = require '../app/controllers/articles'
-  app.get '/', articles.index
+#  app.get '/', articles.index
+
   app.get '/articles', articles.manage
   app.get '/articles/new', auth.requiresLogin, articles.new
   app.get '/articles/:articleId', articles.show
@@ -33,7 +34,17 @@ module.exports = (app, passport, auth) ->
   app.get '/articles/:articleId/edit', auth.requiresLogin, articles.edit
   app.put '/articles/:articleId', auth.requiresLogin, articles.update
   app.get '/articles/:articleId/destroy', auth.requiresLogin, articles.destroy
-
   app.param 'articleId', articles.article
 
+
+  # Scanner routes
+  scanner = require '../app/controllers/scanner'
+  app.get '/', scanner.index
+  app.get '/scanner/new', auth.requiresLogin, scanner.new
+  app.get '/scanner/businesses', scanner.businesses
+
+
+
+
   return
+

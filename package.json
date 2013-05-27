@@ -32,7 +32,6 @@
     "async": "latest",
     "cron": "latest",
     "underscore.deferred": "latest",
-    "iced-coffee-script": "latest",
     "time": "latest"
   },
   "devDependencies": {

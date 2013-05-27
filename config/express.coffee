@@ -12,7 +12,7 @@ module.exports = (app, config, passport) ->
       return /json|text|javascript|css/.test(res.getHeader('Content-Type'))
     level: 9
   }))
-  
+
   app.set('views', config.root + '/app/views')
   app.set('view engine', 'jade')
 
@@ -20,7 +20,7 @@ module.exports = (app, config, passport) ->
     app.use(helpers(config.app.name))
     app.use(express.cookieParser())
     app.use(express.bodyParser())
-    
+
     # Support for using PUT, DEL etc. in forms using hidden _method field
     app.use(express.methodOverride())
 
@@ -31,7 +31,7 @@ module.exports = (app, config, passport) ->
         collection : 'sessions'
       })
     }))
-    
+
     app.use(express.favicon(path.join(__dirname, '../assets/img/favicon.ico')))
 
     app.use(flash())
@@ -52,3 +52,4 @@ module.exports = (app, config, passport) ->
     return
 
   return
+
