@@ -53,7 +53,6 @@ class ScannerManager
       else
         @defer = new _.Deferred
         _.when(@defer).done =>
-          #          console.log 'next'
           cb.apply @, args
 
   _getParams: ->
@@ -72,12 +71,10 @@ class ScannerManager
 
 
   _parseWebsite: (url, cb)->
-    console.log '_parseWebsite', url
     request url, (err, response) ->
       if err or response.statusCode isnt 200
         return cb err
 
-      console.log 'request is good'
       body = response.body
 
       reg = {
@@ -100,22 +97,21 @@ class ScannerManager
 
   getDetails: (place, cb)->
     @_placeDetailsRequest {reference:place.reference}, (error, response) ->
-      #      return console.log 'response', response
       rightPlace = unless _.isUndefined(response.result.website)
         response.result
       else null
       cb? null, rightPlace
 
+#  _filterPlaces: (places, cb)->
+#    cb null, places
 
   getRightPlaces: (cb)->
-    console.log 'getRightPlaces'
     @_placeSearch (error, response) =>
       places = response.results
 
       funcs = _.map places, (place)=>
         (cb)=>
           @getDetails place, (err, rightPlace)->
-            console.log '===new place'
             cb err, rightPlace
       async.series funcs, (errors, results)->
         rightPlaces = _.filter results, (place)-> place?
@@ -126,10 +122,9 @@ class ScannerManager
     @getRightPlaces (err, places)=>
 
       # for test
-      places = [places[0]]
+#      places = [places[0]]
 #      places = [places[0], places[1]]
 #      places = places.slice(0,3)
-
 
 
       funcs = _.map places, (place)=>

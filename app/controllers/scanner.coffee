@@ -1,8 +1,6 @@
 mongoose = require 'mongoose'
 request = require 'request'
 async = require 'async'
-#_ = require 'underscore'
-#_.mixin require 'underscore.deferred'
 
 Business = require('../models/business')
 Scanner = require('../models/scanner')
@@ -21,20 +19,19 @@ exports.create = (req, res) ->
 
 
 exports.index = (req, res) ->
-
-
   Scanner.list (err, scanners) ->
     res.render 'scanner/index',
       scanners: scanners
       message: req.flash 'notice'
 
+
 exports.new = (req, res) ->
   res.render 'scanner/new',
     scanner: new Scanner({})
 
+
 exports.refresh = (req, res)->
   req.scanner.scan()
-  console.log 'refresh'#, req.scanner
   res.redirect '/'
 
 
@@ -57,22 +54,4 @@ exports.show = (req, res)->
   req.scanner.populate 'businesses', (err, scanner)->
     res.render 'scanner/show',
       scanner: scanner
-
-
-#exports.businesses = (req, res) ->
-#  query = req.query
-#  params = {
-#    location: [query.latitude, query.longitude]
-#    radius: query.radius
-#    title: query.title
-#  }
-
-#  scanner = new Scanner
-
-
-##  controller.getBusinesses (errors, businesses)->
-#  Business.find({}).limit(3).exec (error, businesses)->
-#    console.log 'results------>>', arguments#businesses.json.name
-#    return res.render 'scanner/businesses',
-#      businesses: businesses
 

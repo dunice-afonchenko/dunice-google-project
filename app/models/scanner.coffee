@@ -17,8 +17,8 @@ ScannerSchema = new Schema
 
 
 ScannerSchema.methods.scan = ->
-  console.log 'scann', @
-  new ScannerManager(@).exec()
+  Scanner.update {_id: @id}, {businesses: []}, {upsert: on}, (err)=>
+    new ScannerManager(@).exec()
 
 ScannerSchema.statics =
   list: (cb) ->
@@ -32,5 +32,7 @@ ScannerSchema.post 'init', (doc)->
 #    new ScannerManager(doc).exec()
 #  doc._id
 
-module.exports = mongoose.model 'Scanner', ScannerSchema
+Scanner = mongoose.model 'Scanner', ScannerSchema
+
+module.exports = Scanner
 
