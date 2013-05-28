@@ -41,7 +41,13 @@ module.exports = (app, passport, auth) ->
   scanner = require '../app/controllers/scanner'
   app.get '/', scanner.index
   app.get '/scanner/new', auth.requiresLogin, scanner.new
-  app.get '/scanner/businesses', scanner.businesses
+  app.get '/scanner/:scannerId/refresh', auth.requiresLogin, scanner.refresh
+  app.get '/scanner/:scannerId/show', scanner.show
+  app.get '/scanner/:scannerId/destroy', auth.requiresLogin, scanner.destroy
+  app.post '/scanner', auth.requiresLogin, scanner.create
+#  app.get '/scanner/businesses', scanner.businesses
+
+  app.param 'scannerId', scanner.scanner
 
 
 

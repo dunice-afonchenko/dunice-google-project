@@ -23,16 +23,16 @@ ArticleSchema = new Schema
   body:
     type: String
     required: true
-    
+
   tags:
     type: []
     get: getTags
     set: setTags
-    
+
   createdAt:
     type: Date
     default: Date.now
-    
+
 #
 # Schema statics
 #
@@ -44,3 +44,4 @@ ArticleSchema.statics =
     return
 
 Article = mongoose.model 'Article', ArticleSchema
+

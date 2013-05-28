@@ -1,0 +1,48 @@
+extends base
+
+block title
+  | Show scanner
+
+block content
+
+  h2 Show scanner
+
+  table.table.table-striped
+    tbody
+      tr
+        td Title
+        td= scanner.title
+      tr
+        td Latitude
+        td= scanner.latitude
+      tr
+        td Longitude
+        td= scanner.longitude
+      tr
+        td Radius
+        td= scanner.radius
+      tr
+        td Created
+        td= dateShortMon(scanner.createdAt)
+
+  br
+  br
+
+  h3 Found businisses
+
+  each business in scanner.businesses
+
+    - var d = dateShortMon(business.createdAt)
+    - var raw = beautyJSON(business.json)
+
+    .container
+      .row
+        .span2
+          small
+            p
+              b
+              | Found: #{d}
+        .span10
+           pre
+             div.pre!= raw
+

@@ -6,6 +6,8 @@ block title
 block content
 
   each business in businesses
+    - var d = dateShortMon(business.createdAt)
+    - var raw = beautyJSON(business.json)
 
     .container
       .row
@@ -15,10 +17,8 @@ block content
         .span2
           small
             p
-              b Found
-              br
-              != dateShortMon(business.createdAt)
-
+              b
+              | Found: #{d}
         .span10
-          != marked(business.json)
+           pre!= raw
 

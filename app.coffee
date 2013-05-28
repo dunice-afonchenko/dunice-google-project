@@ -40,5 +40,5 @@ require("./app/helpers/general") app
 # Start the app by listening on <port>
 port = process.env.PORT or 4000
 http.createServer(app).listen port, ->
-  console.log "Form5 Express app running on port " + port
+  console.log "Scanner app running on port " + port
 

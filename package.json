@@ -32,7 +32,8 @@
     "async": "latest",
     "cron": "latest",
     "underscore.deferred": "latest",
-    "time": "latest"
+    "time": "latest",
+    "attempt": "latest"
   },
   "devDependencies": {
     "grunt": "latest",
@@ -40,3 +41,4 @@
     "node-dev": "latest"
   }
 }
+

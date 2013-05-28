@@ -1,8 +1,15 @@
 extends base
 
 block content
-  - var action = '/scanner/businesses'
-  form(action=action, method='get')
+  - var action = '/scanner'
+  if (!scanner.isNew)
+    - action += '/'+scanner.id
+
+
+  form(action=action, method='post')
+    if(!scanner.isNew)
+      input(type='hidden', name='_method', value='put')
+
     p
       label Radius
         br
@@ -17,6 +24,11 @@ block content
       label Longitude
         br
         input(name='longitude', type='text', placeholder='Longitude', value=scanner.longitude)
+
+    p
+      label Name of search
+        br
+        input(name='nameofsearch', type='text', placeholder='Name of search', value=scanner.title)
 
     p
       button.btn.btn-primary(type='submit') Create Scanner

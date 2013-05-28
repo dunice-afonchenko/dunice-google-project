@@ -1,0 +1,33 @@
+extends base
+
+block title
+  | Index scanners
+
+block main
+  h2 Index scanner
+
+  if message != ''
+    .alert.alert-notice
+      a.close(data-dismiss="alert", href="javascript:void(0)") x
+      | #{message}
+
+  table.table.table-striped
+    tr
+      th Title
+      th Created
+      th Status
+      th Actions
+    each scanner in scanners
+      tr
+        td
+          if scanner.status == 'Completed'
+            a(href='/scanner/#{scanner.id}/show')=scanner.title
+          else
+            strong=scanner.title
+        td= dateShortMon(scanner.createdAt)
+        td= scanner.status
+        td
+          a(href='/scanner/#{scanner.id}/refresh') refresh
+          |&nbsp;|&nbsp;
+          a(href='/scanner/#{scanner.id}/destroy', onclick='return confirm("Are you sure you want to delete scanner #{scanner.title}?") ? true : false') delete
+
