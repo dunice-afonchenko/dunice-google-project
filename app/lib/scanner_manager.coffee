@@ -80,7 +80,7 @@ class ScannerManager
       reg = {
         wp: /wp-content|wp-admin|wp-includes/
         email: /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9]+)/
-        twitter: /(twitter.com\/[a-zA-Z0-9._-]+(\/[a-zA-Z0-9_-]+)*)/
+        twitter: /(twitter.com\/[#!a-zA-Z0-9._-]+(\/[#!a-zA-Z0-9_-]+)*)/
         facebook: /(facebook.com\/[a-zA-Z0-9._-]+(\/[a-zA-Z0-9_-]+)*)/
         linkedIn: /(linkedin.com\/[a-zA-Z0-9._-]+(\/[a-zA-Z0-9_-]+)*)/
       }
