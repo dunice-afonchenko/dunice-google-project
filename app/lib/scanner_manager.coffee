@@ -59,8 +59,8 @@ class ScannerManager
     {
       location: [@scanner.get('latitude'), @scanner.get('longitude')]
       radius: @scanner.get('radius')
+      title: @scanner.get('title')
     }
-
 
   _placeSearch: (cb)->
     @googlePlaces.placeSearch @_getParams(), @_continue(1, cb)
