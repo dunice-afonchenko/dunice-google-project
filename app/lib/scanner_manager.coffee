@@ -1,6 +1,7 @@
 mongoose = require 'mongoose'
 request = require 'request'
 async = require 'async'
+
 GooglePlaces = require 'googleplaces'
 qs = require 'querystring'
 _ = require 'underscore'
@@ -60,11 +61,11 @@ class ScannerManager
       location: [@scanner.get('latitude'), @scanner.get('longitude')]
       radius: @scanner.get('radius')
       title: @scanner.get('title')
+      types: @scanner.get('scannerType')
     }
 
   _placeSearch: (cb)->
     @googlePlaces.placeSearch @_getParams(), @_continue(1, cb)
-
 
   _placeDetailsRequest: (place, cb)->
     @googlePlaces.placeDetailsRequest place, @_continue(1, cb)
@@ -145,6 +146,7 @@ class ScannerManager
                   website: place.website
                   adress: place.formatted_address or null
                   phone: place.formatted_phone_number or null
+                  types: place.types
                 }
               (cbp)=> @_parseWebsite place.website, cbp
               (cbp)=> request urlDesktop, (err, res)->

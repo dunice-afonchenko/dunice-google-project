@@ -31,5 +31,10 @@ block content
         input(name='title', type='text', placeholder='Name of search', value=scanner.title)
 
     p
+      each scannerType in scannerTypes
+        input(name='scannerType', type='checkbox', value='#{scannerType}')
+        | &nbsp;#{scannerType}
+        br
+    p
       button.btn.btn-primary(type='submit') Create Scanner
 

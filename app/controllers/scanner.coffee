@@ -1,7 +1,7 @@
 mongoose = require 'mongoose'
 request = require 'request'
 async = require 'async'
-
+scannerTypes = require '../lib/scanner_types'
 Business = require('../models/business')
 Scanner = require('../models/scanner')
 
@@ -28,6 +28,7 @@ exports.index = (req, res) ->
 exports.new = (req, res) ->
   res.render 'scanner/new',
     scanner: new Scanner({})
+    scannerTypes: scannerTypes.scannerTypes
 
 
 exports.refresh = (req, res)->

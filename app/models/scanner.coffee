@@ -9,6 +9,7 @@ ScannerSchema = new Schema
   latitude: {type: Number, default: 32.048243}
   longitude: {type: Number, default: -81.101074}
   title: {type: String, default: 'Default search title'}
+  scannerType: [{type: String}]
   createdAt:
     type: Date
     default: Date.now
