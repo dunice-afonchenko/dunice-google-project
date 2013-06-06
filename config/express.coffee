@@ -1,10 +1,12 @@
 express = require('express')
-mongoStore = require('connect-mongo')(express)
 flash = require('connect-flash')
 helpers = require('view-helpers')
 path = require('path')
 
-module.exports = (app, config, passport) ->
+
+
+module.exports = (app, config, passport, sessionStore) ->
+
   app.set('showStackError', true)
 
   app.use(express.compress({
@@ -26,10 +28,7 @@ module.exports = (app, config, passport) ->
 
     app.use(express.session({
       secret: 'p8zztgch48rehu79jskhm6aj3',
-      store: new mongoStore({
-        url: config.db,
-        collection : 'sessions'
-      })
+      store: sessionStore
     }))
 
     app.use(express.favicon(path.join(__dirname, '../assets/img/favicon.ico')))

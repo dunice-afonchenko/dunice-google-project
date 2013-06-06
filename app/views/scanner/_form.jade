@@ -11,6 +11,19 @@ block content
       input(type='hidden', name='_method', value='put')
 
     p
+      label Type of search
+        br
+        input(name='searchType', type='radio', checked, value='nearbySearch')
+        | &nbsp; Nearby search
+        br
+        input(name='searchType', type='radio', value='radarSearch')
+        | &nbsp; Radar search
+
+    p.radarWarning
+      b Warning!
+      |&nbsp;You should choose at least one place type for radar search!
+
+    p
       label Radius
         br
         input.input.input-xxlarge(name='radius', type='text', value=scanner.radius)
@@ -29,6 +42,15 @@ block content
       label Name of search
         br
         input(name='title', type='text', placeholder='Name of search', value=scanner.title)
+
+    p
+      h3 Place types (if you want find all places then check 'establishment')
+
+    p
+      label
+        a.selectAll Select all
+        br
+        a.deselectAll Deselect all
 
     p
       each scannerType in scannerTypes

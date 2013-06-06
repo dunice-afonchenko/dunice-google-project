@@ -33,7 +33,9 @@
     "cron": "latest",
     "underscore.deferred": "latest",
     "time": "latest",
-    "attempt": "latest"
+    "attempt": "latest",
+    "socket.io": "latest",
+    "lodash": "latest"
   },
   "devDependencies": {
     "grunt": "latest",

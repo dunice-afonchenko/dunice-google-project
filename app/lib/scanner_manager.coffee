@@ -27,8 +27,6 @@ config =
 #       support several parallel processes, google map integration
 
 
-
-
 class ScannerManager
 
   constructor: (@scanner)->
@@ -56,16 +54,24 @@ class ScannerManager
         _.when(@defer).done =>
           cb.apply @, args
 
+
   _getParams: ->
     {
       location: [@scanner.get('latitude'), @scanner.get('longitude')]
       radius: @scanner.get('radius')
       title: @scanner.get('title')
       types: @scanner.get('scannerType')
+      searchType: @scanner.get('searchType')
     }
 
+
   _placeSearch: (cb)->
-    @googlePlaces.placeSearch @_getParams(), @_continue(1, cb)
+    searchType = @_getParams().searchType
+    if searchType is 'nearbySearch'
+      @googlePlaces.placeSearch @_getParams(), @_continue(1, cb)
+    else
+      @googlePlaces.radarSearch @_getParams(), @_continue(1, cb)
+
 
   _placeDetailsRequest: (place, cb)->
     @googlePlaces.placeDetailsRequest place, @_continue(1, cb)
@@ -86,7 +92,6 @@ class ScannerManager
         linkedIn: /(linkedin.com\/[a-zA-Z0-9._-]+(\/[a-zA-Z0-9_-]+)*)/
       }
 
-
       cb null, {
         isWP:     reg.wp.test body
         email:    body.match(reg.email)?[0]    or null
@@ -98,13 +103,11 @@ class ScannerManager
 
   getDetails: (place, cb)->
     @_placeDetailsRequest {reference:place.reference}, (error, response) ->
-      rightPlace = unless _.isUndefined(response.result.website)
-        response.result
-      else null
+      detailedPlace = response.result
+      rightPlace = unless _.isUndefined(detailedPlace.website)
+        detailedPlace
       cb? null, rightPlace
 
-#  _filterPlaces: (places, cb)->
-#    cb null, places
 
   getRightPlaces: (cb)->
     @_placeSearch (error, response) =>
@@ -121,12 +124,6 @@ class ScannerManager
 
   getBusinesses: (cb)->
     @getRightPlaces (err, places)=>
-
-      # for test
-#      places = [places[0]]
-#      places = [places[0], places[1]]
-#      places = places.slice(0,3)
-
 
       funcs = _.map places, (place)=>
         (callback)=>
@@ -170,7 +167,6 @@ class ScannerManager
     @getBusinesses (errors, businesses)=>
       @scanner.status = 'Completed'
       @scanner.save()
-
 
 
 exports.ScannerManager = ScannerManager
