@@ -35,7 +35,8 @@
     "time": "latest",
     "attempt": "latest",
     "socket.io": "latest",
-    "lodash": "latest"
+    "lodash": "latest",
+    "pid": ""
   },
   "devDependencies": {
     "grunt": "latest",
