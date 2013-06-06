@@ -1,6 +1,6 @@
 var pidfile = require('pid');
 
-pidfile('/var/run/dgm.pid');
+pidfile('/var/run/dgp.pid');
 
 require('coffee-script')
 require('./app')
