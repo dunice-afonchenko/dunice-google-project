@@ -5,5 +5,5 @@ module.exports =
     app:
       name: 'Scanner app'
     root: require('path').normalize(__dirname + '/..')
-    db: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/scanner-app'
+    db: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://dentlyapps:sergeydunice@ds029658.mongolab.com:29658/googlescanner'
 
