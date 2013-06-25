@@ -27,7 +27,7 @@
     "moment": "2.0.0",
     "marked": "0.2.9",
     "request": "2.21.0",
-    "googleplaces": "https://github.com/dunice-afonchenko/googleplaces.js/tree/master",
+    "googleplaces": "https://github.com/dunice-afonchenko/googleplaces.js/tarball/master",
     "qs": "0.6.5",
     "async": "0.2.9",
     "cron": "1.0.1",
