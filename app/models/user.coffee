@@ -66,14 +66,14 @@ UserSchema.statics =
 
 User = mongoose.model 'User', UserSchema
 
-#user = new User
-#  username: 'test'
-#  password: 'test'
-#  email: 'test@test.test'
-#  name: 'Test user'
-#user.save (err) ->
-#  if err
-#    console.log err
-#  else
-#    console.log 'Created user: ' + user.username
+user = new User
+  username: 'test'
+  password: 'test'
+  email: 'test@test.test'
+  name: 'Test user'
+user.save (err) ->
+  if err
+    console.log err
+  else
+    console.log 'Created user: ' + user.username
 

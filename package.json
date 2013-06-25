@@ -27,7 +27,7 @@
     "moment": "2.0.0",
     "marked": "0.2.9",
     "request": "2.21.0",
-    "googleplaces": "0.0.1",
+    "googleplaces": "git://github.com/dunice-afonchenko/googleplaces.js.git",
     "qs": "0.6.5",
     "async": "0.2.9",
     "cron": "1.0.1",
